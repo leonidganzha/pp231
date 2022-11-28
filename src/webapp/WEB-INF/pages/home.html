@@ -29,7 +29,7 @@
     </table>
 </th:if>
 
-<form th:method="POST" th:action="@{/users/add}" th:object="${user}">
+<form th:method="POST" th:action="@{/add}" th:object="${user}">
     <input type="text" th:field="*{firstName}" id="first_name"/>
     <label for="first_name">First name</label>
     <br/>
