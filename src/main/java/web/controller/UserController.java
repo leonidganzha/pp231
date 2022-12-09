@@ -7,7 +7,7 @@ import web.model.User;
 import web.service.UserService;
 
 @Controller
-@RequestMapping("users")
+@RequestMapping("/")
 public class UserController {
 
     private final UserService userService;
@@ -25,29 +25,25 @@ public class UserController {
 
     @PostMapping("/add")
     public String addUser(@ModelAttribute("user") User user) {
-        if(user.getId() == 0) {
-            userService.addUser(user);
-        } else {
-            userService.updateUser(user);
-        }
-        return "redirect:/users";
+        userService.addUser(user);
+        return "redirect:/";
     }
 
     @DeleteMapping("/remove/{id}")
     public String removeUser(@PathVariable("id") int id) {
         userService.removeUser(id);
-        return "redirect:/users";
+        return "redirect:/";
     }
 
     @GetMapping("/edit/{id}")
     public String showEditPage(@PathVariable("id") int id, Model model) {
         model.addAttribute("user", userService.getUserById(id));
-        return "edit";
+        return "/edit";
     }
 
     @PatchMapping("/{id}")
     public String updateUser (@ModelAttribute("user") User user) {
         userService.updateUser(user);
-        return "redirect:/users";
+        return "redirect:/";
     }
 }
