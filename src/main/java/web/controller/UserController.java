@@ -29,7 +29,7 @@ public class UserController {
         return "redirect:/";
     }
 
-    @DeleteMapping("/remove/{id}")
+    @GetMapping("/remove/{id}")
     public String removeUser(@PathVariable("id") int id) {
         userService.removeUser(id);
         return "redirect:/";
@@ -38,7 +38,7 @@ public class UserController {
     @GetMapping("/edit/{id}")
     public String showEditPage(@PathVariable("id") int id, Model model) {
         model.addAttribute("user", userService.getUserById(id));
-        return "/edit";
+        return "edit";
     }
 
     @PatchMapping("/{id}")
